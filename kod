@@ -1,0 +1,73 @@
+import random
+import time
+List = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10]
+pengar_0 = 5000
+while True:
+    time.sleep(0.5)
+    print("Du har " + str(pengar_0))
+    time.sleep(0.5)
+    print("Hur mycket vill du satsa?")
+    Insats = input("")
+    random.shuffle(List)
+    Spelarhand = List[0] + List[1]
+    List.remove(List[0])
+    Datorhand1 = List[2]
+    List.remove(List[2])
+    Datorhand2 = List[3] + Datorhand1
+    List.remove(List[3])
+    while True:
+        x = random.choice(List)
+        List.remove(x)
+        print("Du har:")
+        time.sleep(0.5)
+        print(Spelarhand)
+        time.sleep(0.5)
+        print("Banken visar:")
+        time.sleep(0.5)
+        print(Datorhand1)
+        time.sleep(0.5)
+        if(Spelarhand>21):
+            print("Du fick över 21")
+            time.sleep(1)
+            print("Du förlorade")
+            break
+        else:
+            print("Vill du slå? y/n")
+            option = input("")
+            if(option == "y"):
+                Spelarhand = Spelarhand+x
+            elif(option == "n" and Spelarhand < Datorhand2):
+                print("Banken visar:")
+                time.sleep(0.5)
+                print(Datorhand2)
+                time.sleep(0.5)
+                print("Du har:")
+                time.sleep(0.5)
+                print(Spelarhand)
+                time.sleep(0.5)
+                print("Du förlorade")
+                pengar_0 = int(pengar_0) - int(Insats)
+                break
+            elif(option == "n" and Spelarhand>Datorhand2):
+                print("Banken visar:")
+                time.sleep(0.5)
+                print(Datorhand2)
+                time.sleep(0.5)
+                print("Du har:")
+                time.sleep(0.5)
+                print(Spelarhand)
+                time.sleep(0.5)
+                print("Du vann!")
+                time.sleep(0.5)
+                pengar_0 = int(pengar_0) + int(Insats)
+                break
+            elif(option == "n" and Spelarhand == Datorhand2):
+                print("Banken visar:")
+                time.sleep(0.5)
+                print(Datorhand2)
+                time.sleep(0.5)
+                print("Du har:")
+                time.sleep(0.5)
+                print(Spelarhand)
+                time.sleep(0.5)
+                print("Oavgjort")    
